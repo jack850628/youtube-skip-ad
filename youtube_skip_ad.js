@@ -8,9 +8,10 @@
 // @description:zh-CN  当播放广告时直接将广告跳到最后
 // @description:ja     広告の再生中に最後に直接ジャンプします
 // @namespace          https://greasyfork.org/zh-TW/users/461233-jack850628
-// @version            1.0.231201
+// @version            1.0.241025
 // @author             jack850628
 // @include            https://*.youtube.com/*
+// @match              https://*.youtube.com/*
 // @noframes
 // @run-at             document-end
 // @license            MIT
@@ -24,7 +25,7 @@
                 setTimeout(function(){
                     console.debug('影片來源更換了')
                     for(let playerDiv of [document.querySelector('#player'), document.querySelector('#full-bleed-container')]){
-                        if(playerDiv?.querySelectorAll('.html5-video-player .ytp-ad-text')?.length > 0){
+                        if(playerDiv?.querySelector('.html5-video-player')?.querySelectorAll('.ytp-ad-text, .ytp-ad-hover-text-button')?.length > 0){
                             console.log('發現廣告！')
                             player.currentTime = player.duration;
                             setTimeout(function(){
@@ -90,5 +91,3 @@
         );
     }
 })();
-
-
