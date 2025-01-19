@@ -8,15 +8,14 @@
 // @description:zh-CN  当播放广告时直接将广告跳到最后
 // @description:ja     広告の再生中に最後に直接ジャンプします
 // @namespace          https://greasyfork.org/zh-TW/users/461233-jack850628
-// @version            1.0.241025
+// @version            1.0.250119
 // @author             jack850628
 // @include            https://*.youtube.com/*
-// @match              https://*.youtube.com/*
 // @noframes
 // @run-at             document-end
 // @license            MIT
 // ==/UserScript==
-
+ 
 (function() {
     function skypeVideo(player){
         if(!player.dataset.adWatcher){
@@ -25,7 +24,7 @@
                 setTimeout(function(){
                     console.debug('影片來源更換了')
                     for(let playerDiv of [document.querySelector('#player'), document.querySelector('#full-bleed-container')]){
-                        if(playerDiv?.querySelector('.html5-video-player')?.querySelectorAll('.ytp-ad-text, .ytp-ad-hover-text-button')?.length > 0){
+                        if(playerDiv?.querySelectorAll('.html5-video-player .ytp-ad-text, .html5-video-player .ad-simple-attributed-string')?.length > 0){
                             console.log('發現廣告！')
                             player.currentTime = player.duration;
                             setTimeout(function(){
